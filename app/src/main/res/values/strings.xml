@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Taken</string>
+    <string name="car_one">Golf</string>
+    <string name="car_two">Tiguan</string>
+    <string name="car_three">BMW</string>
+    <string name="car_four">Bike</string>
 </resources>
