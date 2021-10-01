@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_toRightOf="@id/car_two"
+            android:text="@string/release"
             android:layout_weight="0.25" />
 
     </LinearLayout>
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_toRightOf="@id/car_one"
+            android:text="@string/release"
             android:layout_weight="0.25" />
 
     </LinearLayout>
@@ -91,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_toRightOf="@id/car_three"
+            android:text="@string/release"
             android:layout_weight="0.25" />
 
     </LinearLayout>
@@ -117,6 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_toRightOf="@id/car_four"
+            android:text="@string/release"
             android:layout_weight="0.25" />
 
     </LinearLayout>

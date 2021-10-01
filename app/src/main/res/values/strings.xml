@@ -4,4 +4,6 @@
     <string name="car_two">Tiguan</string>
     <string name="car_three">BMW</string>
     <string name="car_four">Bike</string>
+
+    <string name="release">&#x1F3C1;</string>
 </resources>
