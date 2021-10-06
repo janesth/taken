@@ -54,7 +54,7 @@ public class TakenActivity extends AppCompatActivity {
 
     }
 
-    public void setLabels() {
+    private void setLabels() {
 
         DBConnection dbConnection = new DBConnection();
         Statement statement = null;
@@ -157,6 +157,10 @@ public class TakenActivity extends AppCompatActivity {
 
     }
 
+    public void refresh(View view) {
+        setLabels();
+    }
+
     public void book(View view) {
 
         switch (view.getId()) {
@@ -189,6 +193,13 @@ public class TakenActivity extends AppCompatActivity {
             case R.id.car_four_release:
                 handleRelease(car_four, car_four_release);
                 break;
+            case R.id.release_all:
+                handleRelease(car_one, car_one_release);
+                handleRelease(car_two, car_two_release);
+                handleRelease(car_three, car_three_release);
+                handleRelease(car_four, car_four_release);
+                break;
+
         }
     }
 
