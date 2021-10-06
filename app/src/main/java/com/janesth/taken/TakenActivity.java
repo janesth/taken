@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -148,7 +149,6 @@ public class TakenActivity extends AppCompatActivity {
             }
 
         } else {
-
             car_one.setText("HELP");
             car_two.setText("HELP");
             car_three.setText("HELP");
@@ -214,12 +214,21 @@ public class TakenActivity extends AppCompatActivity {
                 try {
                     statement = connection.createStatement();
 
-                    int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=1, `deviceID`='" + Build.MODEL + "', `name`='" + name.getText() + "' WHERE `car` = '" + car_button.getText() + "';");
+                    ResultSet resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_button.getText().toString().toLowerCase() + "'");
 
-                    car_button.setText(car_button.getText() + " - " + name.getText());
-                    car_button.setEnabled(false);
-                    release_button.setEnabled(true);
-                    name.setEnabled(false);
+                    while (resultSet.next()) {
+                        if (resultSet.getBoolean("booked")) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Bereits reserviert. Bitte aktualisieren.", Toast.LENGTH_SHORT);
+                            toast.show();
+                        } else {
+                            int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=1, `deviceID`='" + Build.MODEL + "', `name`='" + name.getText() + "' WHERE `car` = '" + car_button.getText() + "';");
+
+                            car_button.setText(car_button.getText() + " - " + name.getText());
+                            car_button.setEnabled(false);
+                            release_button.setEnabled(true);
+                            name.setEnabled(false);
+                        }
+                    }
 
                     connection.close();
 
@@ -227,6 +236,9 @@ public class TakenActivity extends AppCompatActivity {
 
                 }
             }
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Bitte Namen eingeben.", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
