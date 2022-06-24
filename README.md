@@ -6,7 +6,6 @@ taken is an app to book objects of movement.
 
 defined in app.properties
 
-### Database statements
+### Database creation
 
-- create table: `` CREATE TABLE reservation (car varchar(12),name varchar(12),booked tinyint(1),deviceID varchar(255)); ``
-- to reset DB: `` UPDATE `reservation` SET `name` = '', `booked` = 0, `deviceID` = ''` ``
+please import file database.sql
