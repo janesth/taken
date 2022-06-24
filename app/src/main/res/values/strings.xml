@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Taken</string>
+    <string name="car_one">Golf</string>
+    <string name="car_two">Tiguan</string>
+    <string name="car_three">BMW</string>
+    <string name="car_four">Bike</string>
+    <string name="car_placeholder">Platzhalter</string>
+
+    <string name="refresh">Neu Laden</string>
+    <string name="release">&#x1F3C1;</string>
+    <string name="release_all">&#x1F3C1; &#x1F3C1;</string>
+
+    <string name="release_all_dialog_title">Farzeuge freigeben</string>
+    <string name="release_all_dialog_message">Sollen alle Fahrzeuge freigegeben werden?</string>
+    <string name="release_all_dialog_opt1">Nein</string>
+    <string name="release_all_dialog_opt2">Ja</string>
+
+    <string name="toast_noBooking">Kein Fahrzeug ist gebucht.</string>
+    <string name="toast_alreadyBooked">Bereits reserviert. Bitte aktualisieren.</string>
+    <string name="toast_noName">Bitte Namen eingeben.</string>
+
 </resources>

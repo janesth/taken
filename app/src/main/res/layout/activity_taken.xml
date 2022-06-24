@@ -4,23 +4,168 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_700"
     tools:context=".TakenActivity">
 
-    <Button
-        android:id="@+id/car_one"
+    <LinearLayout
+        android:id="@+id/car_two_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5px"
+        android:orientation="horizontal"
         android:layout_centerInParent="true"
-        android:layout_weight="1"/>
+        android:gravity="center_horizontal"
+        android:weightSum="1">
 
-    <Button
-        android:id="@+id/car_two"
+        <Button
+            android:id="@+id/car_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:onClick="book"/>
+
+        <Button
+            android:id="@+id/car_two_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/car_two"
+            android:text="@string/release"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
+            android:onClick="release"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/car_one_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/car_one"
-        android:layout_marginRight="5px"
-        android:layout_weight="1"/>
-        <!--android:onClick="" -->
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_above="@id/car_two_line"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/car_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:onClick="book"/>
+
+        <Button
+            android:id="@+id/car_one_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/car_one"
+            android:text="@string/release"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
+            android:onClick="release"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_above="@id/car_one_line"
+        android:background="@color/white"
+        android:hint="Name eingeben"
+        />
+
+    <LinearLayout
+        android:id="@+id/car_three_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/car_two_line"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/car_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:onClick="book"/>
+
+        <Button
+            android:id="@+id/car_three_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/car_three"
+            android:text="@string/release"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
+            android:onClick="release"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/car_four_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/car_three_line"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/car_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:onClick="book"/>
+
+        <Button
+            android:id="@+id/car_four_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/car_four"
+            android:text="@string/release"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
+            android:onClick="release"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/support_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/car_four_line"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refresh"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_200"
+            android:onClick="refresh"/>
+
+        <Button
+            android:id="@+id/release_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/refresh"
+            android:text="@string/release_all"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
+            android:onClick="release"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>
