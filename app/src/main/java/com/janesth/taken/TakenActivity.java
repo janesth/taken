@@ -145,7 +145,7 @@ public class TakenActivity extends AppCompatActivity {
 
                 connection.close();
             } catch (SQLException ex) {
-
+                ex.printStackTrace();
             }
 
         } else {
@@ -233,7 +233,7 @@ public class TakenActivity extends AppCompatActivity {
                     connection.close();
 
                 } catch (SQLException ex) {
-
+                    ex.printStackTrace();
                 }
             }
         } else {
@@ -265,7 +265,7 @@ public class TakenActivity extends AppCompatActivity {
                 connection.close();
 
             } catch (SQLException ex) {
-
+                ex.printStackTrace();
             }
         }
     }
