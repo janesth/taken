@@ -4,6 +4,7 @@
     <string name="car_two">Tiguan</string>
     <string name="car_three">BMW</string>
     <string name="car_four">Bike</string>
+    <string name="car_placeholder">Platzhalter</string>
 
     <string name="refresh">Neu Laden</string>
     <string name="release">&#x1F3C1;</string>

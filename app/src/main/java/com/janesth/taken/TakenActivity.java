@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,7 +75,7 @@ public class TakenActivity extends AppCompatActivity {
                 car_three.setText(car_three_string);
                 car_four.setText(car_four_string);
 
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_one_string.toLowerCase() + "'");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = " + car_one.getId());
                 while (resultSet.next()) {
                     if (resultSet.getBoolean("booked")) {
                         car_one.setEnabled(false);
@@ -91,7 +93,7 @@ public class TakenActivity extends AppCompatActivity {
                     }
                 }
 
-                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_two_string.toLowerCase() + "'");
+                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = " + car_two.getId());
                 while (resultSet.next()) {
                     if (resultSet.getBoolean("booked")) {
                         car_two.setEnabled(false);
@@ -109,7 +111,7 @@ public class TakenActivity extends AppCompatActivity {
                     }
                 }
 
-                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_three_string.toLowerCase() + "'");
+                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = " + car_three.getId());
                 while (resultSet.next()) {
                     if (resultSet.getBoolean("booked")) {
                         car_three.setEnabled(false);
@@ -127,7 +129,7 @@ public class TakenActivity extends AppCompatActivity {
                     }
                 }
 
-                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_four_string.toLowerCase() + "'");
+                resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = " + car_four.getId());
                 while (resultSet.next()) {
                     if (resultSet.getBoolean("booked")) {
                         car_four.setEnabled(false);
@@ -151,10 +153,10 @@ public class TakenActivity extends AppCompatActivity {
             }
 
         } else {
-            car_one.setText("HELP");
-            car_two.setText("HELP");
-            car_three.setText("HELP");
-            car_four.setText("HELP");
+            car_one.setText(getResources().getString(R.string.car_placeholder));
+            car_two.setText(getResources().getString(R.string.car_placeholder));
+            car_three.setText(getResources().getString(R.string.car_placeholder));
+            car_four.setText(getResources().getString(R.string.car_placeholder));
         }
 
     }
@@ -227,7 +229,7 @@ public class TakenActivity extends AppCompatActivity {
     }
 
     private void handleBooking(Button car_button, Button release_button) {
-        if (!name.getText().equals(null) && !name.getText().toString().equals("")) {
+        if (name.getText() != null && !StringUtils.isEmpty(name.getText().toString())) {
             DBConnection dbConnection = new DBConnection();
             Statement statement = null;
             connection = dbConnection.conclass();
@@ -237,14 +239,14 @@ public class TakenActivity extends AppCompatActivity {
                 try {
                     statement = connection.createStatement();
 
-                    ResultSet resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = '" + car_button.getText().toString().toLowerCase() + "'");
+                    ResultSet resultSet = statement.executeQuery("SELECT * FROM `reservation` where `car` = " + car_button.getId());
 
                     while (resultSet.next()) {
                         if (resultSet.getBoolean("booked")) {
                             Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_alreadyBooked), Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
-                            int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=1, `deviceID`='" + Build.MODEL + "', `name`='" + name.getText() + "' WHERE `car` = '" + car_button.getText() + "';");
+                            int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=1, `deviceID`='" + Build.MODEL + "', `name`='" + name.getText() + "' WHERE `car` = " + car_button.getId() + ";");
 
                             car_button.setText(car_button.getText() + " - " + name.getText());
                             car_button.setEnabled(false);
@@ -273,11 +275,14 @@ public class TakenActivity extends AppCompatActivity {
         if (connection != null) {
             try {
                 statement = connection.createStatement();
+                String splitName = getResources().getString(R.string.car_placeholder);
 
-                // BAD CODE
-                final String splitName = car_button.getText().toString().split(" -")[0];
+                if(car_button.getText() != null && !StringUtils.isEmpty(car_button.getText().toString())) {
+                    if(car_button.getText().toString().split(" -").length > 1)
+                    splitName = car_button.getText().toString().split(" -")[0];
+                }
 
-                int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=0, `deviceID`='', `name`='' WHERE `car` = '" + splitName + "';");
+                statement.executeUpdate("UPDATE `reservation` SET `booked`=0, `deviceID`='', `name`='' WHERE `car` = " + car_button.getId() + ";");
 
                 car_button.setText(splitName);
                 car_button.setEnabled(true);
