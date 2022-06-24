@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_700"
     tools:context=".TakenActivity">
 
     <LinearLayout
@@ -30,6 +31,7 @@
             android:layout_toRightOf="@id/car_two"
             android:text="@string/release"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
             android:onClick="release"/>
 
     </LinearLayout>
@@ -59,6 +61,7 @@
             android:layout_toRightOf="@id/car_one"
             android:text="@string/release"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
             android:onClick="release"/>
 
     </LinearLayout>
@@ -71,6 +74,7 @@
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px"
         android:layout_above="@id/car_one_line"
+        android:background="@color/white"
         android:hint="Name eingeben"
         />
 
@@ -98,6 +102,7 @@
             android:layout_toRightOf="@id/car_three"
             android:text="@string/release"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
             android:onClick="release"/>
 
     </LinearLayout>
@@ -126,6 +131,7 @@
             android:layout_toRightOf="@id/car_four"
             android:text="@string/release"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
             android:onClick="release"/>
 
     </LinearLayout>
@@ -145,6 +151,7 @@
             android:layout_height="wrap_content"
             android:text="@string/refresh"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_200"
             android:onClick="refresh"/>
 
         <Button
@@ -155,11 +162,10 @@
             android:layout_toRightOf="@id/refresh"
             android:text="@string/release_all"
             android:layout_weight="0.25"
+            android:backgroundTint="@color/teal_700"
             android:onClick="release"/>
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>
