@@ -278,8 +278,11 @@ public class TakenActivity extends AppCompatActivity {
                 String splitName = getResources().getString(R.string.car_placeholder);
 
                 if(car_button.getText() != null && !StringUtils.isEmpty(car_button.getText().toString())) {
-                    if(car_button.getText().toString().split(" -").length > 1)
-                    splitName = car_button.getText().toString().split(" -")[0];
+                    if(car_button.getText().toString().split(" -").length > 1) {
+                        splitName = car_button.getText().toString().split(" -")[0];
+                    } else {
+                        splitName = car_button.getText().toString();
+                    }
                 }
 
                 statement.executeUpdate("UPDATE `reservation` SET `booked`=0, `deviceID`='', `name`='' WHERE `car` = " + car_button.getId() + ";");
