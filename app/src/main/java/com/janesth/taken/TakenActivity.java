@@ -1,7 +1,9 @@
 package com.janesth.taken;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -194,13 +196,34 @@ public class TakenActivity extends AppCompatActivity {
                 handleRelease(car_four, car_four_release);
                 break;
             case R.id.release_all:
-                handleRelease(car_one, car_one_release);
-                handleRelease(car_two, car_two_release);
-                handleRelease(car_three, car_three_release);
-                handleRelease(car_four, car_four_release);
+                if(checkIfMinOneBookingExists()) {
+                    new AlertDialog.Builder(this)
+                            .setTitle(getResources().getString(R.string.release_all_dialog_title))
+                            .setMessage(getResources().getString(R.string.release_all_dialog_message))
+                            .setNegativeButton(getResources().getString(R.string.release_all_dialog_opt1), null)
+                            .setPositiveButton(getResources().getString(R.string.release_all_dialog_opt2), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dia, int f) {
+                                    handleRelease(car_one, car_one_release);
+                                    handleRelease(car_two, car_two_release);
+                                    handleRelease(car_three, car_three_release);
+                                    handleRelease(car_four, car_four_release);
+                                }
+                            }).create().show();
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_noBooking), Toast.LENGTH_SHORT);
+                    toast.show();
+                }
                 break;
 
         }
+    }
+
+    private boolean checkIfMinOneBookingExists() {
+        if(car_one.isEnabled() && car_two.isEnabled() && car_three.isEnabled() && car_four.isEnabled()) {
+            return false;
+        }
+        return true;
     }
 
     private void handleBooking(Button car_button, Button release_button) {
@@ -218,7 +241,7 @@ public class TakenActivity extends AppCompatActivity {
 
                     while (resultSet.next()) {
                         if (resultSet.getBoolean("booked")) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Bereits reserviert. Bitte aktualisieren.", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_alreadyBooked), Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
                             int result = statement.executeUpdate("UPDATE `reservation` SET `booked`=1, `deviceID`='" + Build.MODEL + "', `name`='" + name.getText() + "' WHERE `car` = '" + car_button.getText() + "';");
@@ -237,7 +260,7 @@ public class TakenActivity extends AppCompatActivity {
                 }
             }
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Bitte Namen eingeben.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_noName), Toast.LENGTH_SHORT);
             toast.show();
         }
     }
